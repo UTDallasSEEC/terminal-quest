@@ -57,14 +57,8 @@ def main(debug=False, challenge=None, step=None):
             'linux-story', 'level'
         )
 	last_unlocked_challenge = 0;
-        if last_unlocked_challenge:
-            # With this data, we need to decide which chapters are locked.
-            win.show_menu()
-
-        else:
-            win.show_menu()
-	    #win.setup_application_widgets()
-            #win.start_script_in_terminal("0", "1")
+    win.setup_application_widgets()
+    win.start_script_in_terminal("0", "1")
     #win.show_menu()
     os.system("kano-stop-splash")
     Gtk.main()
@@ -77,7 +71,11 @@ def handle_cleanup():
 
 if __name__ == "__main__":
     args = docopt.docopt(__doc__)
-
+    #increment number uses counter
+    with open(r'/var/stats/stats.txt','r+')as f:
+	value= int(f.read())
+	f.seek(0)
+	f.write(str(value+1))
     debug = args['--debug']
     challenge = args['<challenge>']
     step = args['<step>']
