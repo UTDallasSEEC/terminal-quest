@@ -16,7 +16,7 @@ class StepTemplateLs(Terminal):
 
 class Step1(StepTemplateLs):
     story = [
-        "Hello"),
+        "Hello",
         "Welcome to Terminal Quest.",
         "You've entered a perilous world where words "
         "wield power, and you are going to learn to harness this power!",
