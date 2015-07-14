@@ -57,8 +57,9 @@ if __name__ == "__main__":
 
         elif on_stable_version and profile_level:
             challenge = profile_level + 1
-
-        # If the project was completed previously, just start over
+	#set save state to level 0 always in order to never get stuck for exhibit 
+	save_app_state_variable("linux-story","level",0)
+	 # If the project was completed previously, just start over
         max_challenge = get_max_challenge_number()
         if challenge > max_challenge:
             challenge = 0
