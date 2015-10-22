@@ -341,12 +341,13 @@ class Terminal(Cmd):
         '''Look up XP earned after challenge
         '''
         # Look up XP earned
-        xp = get_app_xp_for_challenge("linux-story",
-                                      str(self.challenge_number)
-                                      )
+        #xp = get_app_xp_for_challenge("linux-story",
+                                      #str(self.challenge_number)
+                                      #)
 
-        if xp > 0:
-            self.xp = "{{gb:Congratulations, you earned " + str(xp) + " XP!}}\n\n"
+        #if xp > 0:
+        #    self.xp = "{{gb:Congratulations, you earned " + str(xp) + " XP!}}\n\n"
+	return 0
 
     def exit(self):
         data = {'exit': '1'}

@@ -63,7 +63,7 @@ if __name__ == "__main__":
         max_challenge = get_max_challenge_number()
         if challenge > max_challenge:
             challenge = 0
-
+        challenge=0
         launch_project(challenge, 1)
     else:
         sys.exit("Wrong number of arguments!")

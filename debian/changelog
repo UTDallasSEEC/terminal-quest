@@ -1,3 +1,10 @@
+linux-story (1.2-1.1) UNRELEASED; urgency=low
+
+  * Non-maintainer upload.
+  * 
+
+ -- Team Kano <seec@seec>  Tue, 14 Jul 2015 00:46:49 -0500
+
 linux-story (1.2-1) unstable; urgency=low
 
   * Initial release.
