@@ -56,7 +56,7 @@ def main(debug=False, challenge=None, step=None):
         last_unlocked_challenge = load_app_state_variable(
             'linux-story', 'level'
         )
-
+	last_unlocked_challenge = 0;
         if last_unlocked_challenge:
             # With this data, we need to decide which chapters are locked.
             win.show_menu()
