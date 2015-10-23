@@ -119,7 +119,7 @@ class Terminal(Cmd):
 
         # Put together the terminal prompt.
         username = os.environ['LOGNAME']
-        yellow_part = username + "@kano "
+        yellow_part = username + "@UTDallas "
         yellow_part = colour_string_with_preset(yellow_part, "yellow", True)
 
         blue_part = fake_cwd + ' $ '

@@ -27,6 +27,7 @@ from linux_story.gtk3.Spellbook import Spellbook
 from linux_story.gtk3.Storybook import Storybook
 from linux_story.gtk3.FinishDialog import FinishDialog
 from linux_story.common import css_dir
+from linux_story.gtk3.UserInfo import UserInfo
 from linux_story.gtk3.MenuScreen import MenuScreen
 from linux_story.load_defaults_into_filetree import (
     revert_to_default_permissions
@@ -335,7 +336,7 @@ class MainWindow(GenericWindow):
         they want to start from.
         '''
 
-        self.menu = MenuScreen()
+        self.menu = UserInfo()
         self.menu.connect(
             'challenge_selected', self.replace_menu_with_challenge
         )

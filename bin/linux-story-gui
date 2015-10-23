@@ -62,9 +62,10 @@ def main(debug=False, challenge=None, step=None):
             win.show_menu()
 
         else:
-            win.setup_application_widgets()
-            win.start_script_in_terminal("0", "1")
-
+            win.show_menu()
+	    #win.setup_application_widgets()
+            #win.start_script_in_terminal("0", "1")
+    #win.show_menu()
     os.system("kano-stop-splash")
     Gtk.main()
 
