@@ -61,8 +61,8 @@ class UserInfo(Gtk.Alignment):
 	vbox_left = Gtk.Box(orientation=Gtk.Orientation.VERTICAL,spacing=10)
 	vbox_left.set_homogeneous(False)
 	
-	hbox.pack_start(vbox_left,True,True,0)
-	hbox.pack_start(vbox,True,True,0)
+	alertBox.pack_start(vbox_left,True,True,0)
+	alertBox.pack_start(vbox,True,True,0)
 	
 	age = Gtk.label("Age")
 	vbox_left.pack_start(age,True,True,0)
@@ -78,7 +78,7 @@ class UserInfo(Gtk.Alignment):
 	continue_btn = self.create_menu_button("CONTINUE STORY")
 	continue_btn.connect("clicked",self.launch_challenge,self.last_unlocked_challenge)
 	vbox.pack_start(continue_btn,True,True,0)
-	self.add(hbox)
+	self.add(alertBox)
 	self.show_all()
 	
     def continue_story_or_select_chapter_menu(self, widget=None):
