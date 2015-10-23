@@ -64,7 +64,7 @@ class UserInfo(Gtk.Alignment):
 	alertBox.pack_start(vbox_left,True,True,0)
 	alertBox.pack_start(vbox,True,True,0)
 	
-	age = Gtk.label("Age")
+	age = Gtk.Label("Age")
 	vbox_left.pack_start(age,True,True,0)
 
 	self.entry = Gtk.Entry()
