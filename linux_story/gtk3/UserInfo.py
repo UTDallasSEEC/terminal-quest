@@ -50,46 +50,67 @@ class UserInfo(Gtk.Alignment):
         self.background.set_size_request(self.width, self.height)
 
         self.add(self.background)
-	self.setupAlert()
 
-    def setupAlert(self,widget=None):
-	alertBox = Gtk.Box(spacing=10)
-	alertBox.set_homogeneous(False)
-        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL,spacing=10)
-	vbox.set_homogeneous(False)
-	self.add(vbox)
-	vbox_left = Gtk.Box(orientation=Gtk.Orientation.VERTICAL,spacing=10)
-	vbox_left.set_homogeneous(False)
-	
-	alertBox.pack_start(vbox_left,True,True,0)
-	alertBox.pack_start(vbox,True,True,0)
-	
-	age = Gtk.Label("Age")
-	vbox_left.pack_start(age,True,True,0)
+        # Find the greatest challenge that has been created according to
+        # kano profile
+        self.max_challenge = get_max_challenge_number()
 
-	self.entry = Gtk.Entry()
-	vbox.pack_start(self.entry,True,True,0)
-	buttonB = Gtk.ToggleButton("Boy")
+        # Get the last unlocked challenge.
+        self.last_unlocked_challenge = 0
+
+        self.infoBox()
+
+    def infoBox(self, widget=None):
+	info = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+	self.add(info)
+
+	age = Gtk.Label()
+	age.set_text("Enter your age:")
+	
+	ageInc = Gtk.Adjustment(0,0,100,1,10,0)
+	self.incbtn = Gtk.SpinButton()
+	self.incbtn.set_adjustment(ageInc)
+
+	gender = Gtk.Label()
+	gender.set_text("Are you a Boy or a Gril:")
+	
+	buttonB = Gtk.RadioButton.new_with_label_from_widget(None,"Boy")
 	buttonB.connect("toggled",self.on_button_toggled,"b")
-	vbox.pack_start(buttonB,True,True,0)
-	buttonG= Gtk.ToggleButton("Girl")
-	buttonG.connect("toggled",self.on_button_toggled,"g")
-	vbox.pack_start(buttonG,True,True,0)
-	continue_btn = self.create_menu_button("CONTINUE STORY")
-	continue_btn.connect("clicked",self.launch_challenge,self.last_unlocked_challenge)
-	vbox.pack_start(continue_btn,True,True,0)
-	self.add(alertBox)
-	self.show_all()
 	
+	buttonG = Gtk.RadioButton.new_from_widget(buttonB)
+	buttonG.set_label("Girl")
+	buttonG.connect("toggled",self.on_button_toggled,"g")
+
+	continue_btn = self.create_menu_button("Start")
+	continue_btn.connect("clicked",self.launch_challenge,self.last_unlocked_challenge)
+	#add to grid
+	info.pack_start(age,True,True,0)
+	info.pack_start(self.incbtn,True,True,0)
+	info.pack_start(gender,True,True,0)
+	info.pack_start(buttonB,True,True,0)
+	info.pack_start(buttonG,True,True,0)
+	info.add(continue_btn)
+	align = Gtk.Alignment(xalign=0.5,yalign=0.5,xscale=0,yscale=0)
+	align.add(info)
+	align.set_padding(10,10,0,0)
+	self.replace_menu(align)
+	self.show_all()
+
+    def on_button_toggled(self,button,name):
+	if button.get_active():
+		state="on"
+	else:
+		state="off" 	
+
     def continue_story_or_select_chapter_menu(self, widget=None):
-        '''This gives the user a si mple option of just continuing the story
+        '''This gives the user a simple option of just continuing the story
         from where they left off, or selecting the chapter manually.
         '''
 
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         header = self.create_menu_header(
             "TERMINAL QUEST MENU",
-            "Enter your information"
+            "Use arrow keys to select the button"
         )
 
         # This takes the user to the latest point in the story
