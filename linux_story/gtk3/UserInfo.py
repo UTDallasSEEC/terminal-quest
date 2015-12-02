@@ -24,7 +24,7 @@ from gi.repository import Gtk, GObject
 from linux_story.common import get_max_challenge_number
 from kano_profile.apps import load_app_state_variable
 from linux_story.titles import challenges, chapters
-
+import sqlite3
 
 class UserInfo(Gtk.Alignment):
     '''This shows the user the challenges they can select.
@@ -457,6 +457,13 @@ class UserInfo(Gtk.Alignment):
                     description = self.create_challenge_description(number)
 
                 self.edit_info_box(title, description)
-
-    def launch_challenge(self, widget, challenge_number):
+    def addStats(age,gender):
+	#connect to sql databse
+	#insert row.
+	databaseFile = '/usr/share/seec/seecStats.db'
+	table = 'stats'
+	conn = sqlite3.connect(databaseFile)
+	conn.execute("INSERT INTO STATS (AGE,GENDER)VALUES(?,?)",(age,gender))
+    def launch_challenge(self, widget, challenge_number,age,gender):
+	self.addStats(age,gender)
         self.emit('challenge_selected', challenge_number)
